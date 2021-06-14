@@ -1,4 +1,4 @@
-# bookinfo-knative
+# Bookinfo on Knative
 
 ## Minikube example setup
 Follow the instructions bellow:
@@ -49,7 +49,7 @@ kubectl apply --filename https://github.com/knative/net-istio/releases/download/
 Install bookinfo sample app (emptyDir is not support on Knative):
 
 ```
-cat <<-EOF | kubectl apply -f -
+$cat <<-EOF | kubectl apply -f -
 ---
 apiVersion: v1
 kind: ServiceAccount
