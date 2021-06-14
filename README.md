@@ -6,6 +6,28 @@ Follow the instructions bellow:
 Install istio.
 
 ```
+$ cat ~/istio-minimal-operator.yaml
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  values:
+    global:
+      proxy:
+        autoInject: enabled
+      useMCP: false
+      # The third-party-jwt is not enabled on all k8s.
+      # See: https://istio.io/docs/ops/best-practices/security/#configure-third-party-service-account-tokens
+      jwtPolicy: first-party-jwt
+
+  addonComponents:
+    pilot:
+      enabled: true
+
+  components:
+    ingressGateways:
+      - name: istio-ingressgateway
+        enabled: true
+
 $istioctl manifest --set values.gateways.istio-ingressgateway.runAsRoot=true install -f istio-minimal-operator.yaml
 ```
 
