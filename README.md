@@ -122,7 +122,7 @@ spec:
             - name: LOG_DIR
               value: "/tmp/logs"
             - name: SERVICES_DOMAIN
-              value: "default.svc.cluster.local"  
+              value: "default"  
             - name: SERVICES_PORT
               value: "80"    
             - name: ENABLE_RATING
@@ -163,7 +163,7 @@ spec:
             - name: LOG_DIR
               value: "/tmp/logs"
             - name: SERVICES_DOMAIN
-              value: "default.svc.cluster.local"
+              value: "default"
             - name: SERVICES_PORT
               value: "80"  
           ports:
@@ -277,5 +277,6 @@ $ ./build-services.sh $TAG $DOCKER_REPO
 # docker push ${DOCKER_REPO}/examples-bookinfo-reviews-v1:$TAG
 # ...
 ```
-Note: the diff between the upstream Istio sample app and the branch used is to change the service port from 9080 to a custom one as Knative
-assumes that to be 80 and cannot be adjusted.
+Note: the diff between the upstream Istio sample app and the branch used is to change the service port from 9080 to a custom one as Knative assumes that to be 80 and cannot be adjusted.
+In Knative a service that hits another one needs to use as a name either `service_name.namespace_name` or
+`service_name.namespace_name.svc.cluster.local`.
